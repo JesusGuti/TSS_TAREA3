@@ -9,9 +9,8 @@ public class Demanda {
         this.random = new Random();
     }
 
-    public double transformadaInversa() {
+    public double transformadaInversa(double r) {
         double res = 0.0;
-        double r = this.random.nextDouble();
         if(r >= 0.0 && r < 0.010) {
             res = 35.0;
         }else if(r >= 0.010 && r < 0.025) {
