@@ -100,7 +100,7 @@ public class Calculo {
             numeroR2[i] = random.nextDouble();
             dias[i] = obtenerDiasDeEspera(i); 
             inventarioPromedio[i] = calcularInventarioPromedio(i);
-            imprimir(i);
+            // imprimir(i);
             diasEspera--;
         }
     }
@@ -140,12 +140,17 @@ public class Calculo {
 
     private double calcularInventarioPromedio(int indice)  {
         double res = 0.0;
-        if(faltante[indice] > 0) {
-            res = (inventarioInicial[indice]+inventarioFinal[indice]) / 2;
+        if(faltante[indice] == 0) {
+            res = (inventarioInicial[indice]+inventarioFinal[indice]) / 2.0;
         }else {
             res = (inventarioInicial[indice]/2) * (inventarioInicial[indice]/demandaAjustada[indice]);
         }
         return res;
+    }
+
+    public double costoTotal() {
+        Costo c = new Costo(this);
+        return c.calcularCostoTotalHookeJeeves();
     }
 
     private void imprimir(int i) {

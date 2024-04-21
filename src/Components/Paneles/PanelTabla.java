@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Models.Calculo;
+import Models.Costo;
 
 public class PanelTabla extends JPanel{
     private Calculo calculo;
@@ -47,7 +48,8 @@ public class PanelTabla extends JPanel{
     }
 
     public void iniciarComponentes() {
-        definirTabla();        
+        definirTabla();      
+        definirTablaCostos();  
     }
 
     private void definirTabla() {
@@ -87,5 +89,27 @@ public class PanelTabla extends JPanel{
         JTable tabla = new JTable(modeloTabla);
         JScrollPane scrollPane = new JScrollPane(tabla);
         add(scrollPane);
+    }
+
+    private void definirTablaCostos() {
+        Object[][] datos = new Object[1][4]; 
+        Costo costos = new Costo(calculo);
+        datos[0][0] = costos.calcularCostoOrden();
+        datos[0][1] = costos.calcularCostoInventario();
+        datos[0][2] = costos.calcularCostoFaltante();
+        datos[0][3] = costos.calcularCostoTotal();
+
+        String[] nombresColumnas = {
+            "Costo Ordenar",
+            "Costo Inventario",
+            "Costo Faltante",
+            "Costo Total"
+        };
+
+        DefaultTableModel modeloTabla = new DefaultTableModel(datos, nombresColumnas);
+        JTable tabla = new JTable(modeloTabla);
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        add(scrollPane);
+        System.out.println("Imprime tabla");
     }
 }
