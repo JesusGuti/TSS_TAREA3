@@ -14,13 +14,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import Components.Listeners.CampoIteracionesListener;
+import Components.Ventanas.VentanaGrafica;
+import Components.Ventanas.VentanaTabla;
+import Models.Calculo;
 
 public class Panel extends JPanel {
     private JTextField campoIteraciones;
-    // private VentanaTabla tabla = null;
-    // private VentanaGrafica grafica = null;
+    private Calculo calculo;
+    private VentanaTabla tabla = null;
+    private VentanaGrafica grafica = null;
 
     public Panel() {
         iniciarPanel();
@@ -75,8 +78,8 @@ public class Panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                   campoIteraciones.setText("");
-
+                    campoIteraciones.setText("");
+                    calculo = null;
                 } catch (Error error) {
                     
                 }
@@ -89,7 +92,10 @@ public class Panel extends JPanel {
                 try {
                     String textoIteraciones = campoIteraciones.getText();
                     int numeroIteraciones = Integer.parseInt(textoIteraciones);
-
+                    if(calculo == null) {
+                        calculo = new Calculo(numeroIteraciones, 150, 200, 100);
+                    }
+                    tabla = new VentanaTabla(calculo);
                 } catch (NumberFormatException error) {
                     JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -103,7 +109,10 @@ public class Panel extends JPanel {
                 try {
                     String textoIteraciones = campoIteraciones.getText();
                     int numeroIteraciones = Integer.parseInt(textoIteraciones);
-                    
+                    if(calculo == null) {
+                        calculo = new Calculo(numeroIteraciones, 150, 200, 100);
+                    }
+                    grafica = new VentanaGrafica(calculo);
                 } catch (NumberFormatException error) {
                     JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error", JOptionPane.ERROR_MESSAGE);
                 }
