@@ -139,7 +139,11 @@ public class Calculo {
 
     private double calcularInventarioPromedio(int indice)  {
         double res = 0.0;
-
+        if(faltante[indice] > 0) {
+            res = (inventarioInicial[indice]+inventarioFinal[indice]) / 2;
+        }else {
+            res = (inventarioInicial[indice]/2) * (inventarioInicial[indice]/demandaAjustada[indice]);
+        }
         return res;
     }
 
