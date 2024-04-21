@@ -9,14 +9,14 @@ public class TiempoDeEntrega {
         this.random = new Random();
     }
 
-    public double transformadaInversaTiempo(double r) {
-        double res = 0.0;
+    public int transformadaInversaTiempo(double r) {
+        int res = 0;
         if(r >= 0.0 && r < 0.3) {
-            res = 1.0;
+            res = 1;
         }else if(r >= 0.3 && r < 0.7) {    
-            res = 2.0;
+            res = 2;
         }else {
-            res = 3.0;
+            res = 3;
         }
         return res;
     }
