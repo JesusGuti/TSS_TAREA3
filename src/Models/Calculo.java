@@ -40,6 +40,7 @@ public class Calculo {
         this.iniciarValores();
         this.inicializarArreglos();
         this.calcularFactorEstacional();
+        this.calcularTabla();
     }
 
     private void iniciarValores() {
@@ -152,5 +153,53 @@ public class Calculo {
             " " + numeroR1[i] + " " + demanda[i] + " " + demandaAjustada[i] + " "
             + inventarioFinal[i] + " " + faltante[i] + " " + orden[i] + " " + numeroR2[i] + " "
             + dias[i] + " " + inventarioPromedio[i]);
+    }
+
+    public int[] obtenerMeses() {
+        return meses;
+    }
+
+    public double[] obtenerFactoresEstacionales() {
+        return factorEstacional;
+    }
+
+    public int[] obtenerInventarioInicial() {
+        return inventarioInicial;
+    }
+
+    public double[] obtenerR1() {
+        return numeroR1;
+    }
+
+    public int[] obtenerDemanda() {
+        return demanda;
+    }
+
+    public int[] obtenerDemandaAjustada() {
+        return demandaAjustada;
+    }
+    
+    public int[] obtenerInventarioFinal() {
+        return inventarioFinal;
+    }
+
+    public int[] obtenerFaltante() {
+        return faltante;
+    }
+
+    public String[] obtenerOrden() {
+        return orden;
+    }
+
+    public double[] obtenerR2() {
+        return numeroR2;
+    }
+
+    public String[] obtenerDias() {
+        return dias;
+    }
+
+    public double[] obtenerInventarioPromedio() {
+        return inventarioPromedio;
     }
 }
