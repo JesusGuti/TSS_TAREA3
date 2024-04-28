@@ -17,11 +17,12 @@ import javax.swing.JTextField;
 import Components.Listeners.CampoIteracionesListener;
 import Components.Ventanas.VentanaGrafica;
 import Components.Ventanas.VentanaTabla;
+import Models.HookeJeeves;
 import Models.Calculo;
 
 public class Panel extends JPanel {
     private JTextField campoIteraciones;
-    private Calculo calculo;
+    private HookeJeeves hookeJeeves;
     private VentanaTabla tabla = null;
     private VentanaGrafica grafica = null;
 
@@ -79,7 +80,7 @@ public class Panel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     campoIteraciones.setText("");
-                    calculo = null;
+                    hookeJeeves = null;
                 } catch (Error error) {
                     
                 }
@@ -92,9 +93,12 @@ public class Panel extends JPanel {
                 try {
                     String textoIteraciones = campoIteraciones.getText();
                     int numeroIteraciones = Integer.parseInt(textoIteraciones);
-                    if(calculo == null) {
-                        calculo = new Calculo(numeroIteraciones, 150, 200, 100);
+                    if(hookeJeeves == null) {
+                        hookeJeeves = new HookeJeeves(numeroIteraciones);
                     }
+                    Calculo  calculo = hookeJeeves.obtenerMejorCalculo();
+                    String mensaje = obtenerMensajeValoresValidos();
+                    JOptionPane.showMessageDialog(null,mensaje , "Valores Optimos", JOptionPane.INFORMATION_MESSAGE);
                     tabla = new VentanaTabla(calculo);
                 } catch (NumberFormatException error) {
                     JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -109,9 +113,12 @@ public class Panel extends JPanel {
                 try {
                     String textoIteraciones = campoIteraciones.getText();
                     int numeroIteraciones = Integer.parseInt(textoIteraciones);
-                    if(calculo == null) {
-                        calculo = new Calculo(numeroIteraciones, 150, 200, 100);
+                    if(hookeJeeves == null) {
+                        hookeJeeves = new HookeJeeves(numeroIteraciones);
                     }
+                    Calculo  calculo = hookeJeeves.obtenerMejorCalculo();
+                    String mensaje = obtenerMensajeValoresValidos();
+                    JOptionPane.showMessageDialog(null,mensaje , "Valores Optimos", JOptionPane.INFORMATION_MESSAGE);
                     grafica = new VentanaGrafica(calculo);
                 } catch (NumberFormatException error) {
                     JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -136,5 +143,10 @@ public class Panel extends JPanel {
             ventana.dispose();
             ventana = null;
         }
+    }
+
+    private String obtenerMensajeValoresValidos() {
+        String mensaje = "Los valores optimos son: r" + hookeJeeves.obtenerR() + " y q:" + hookeJeeves.obtenerQ();
+        return mensaje;
     }
 }
