@@ -100,7 +100,6 @@ public class Calculo {
             numeroR2[i] = random.nextDouble();
             dias[i] = obtenerDiasDeEspera(i); 
             inventarioPromedio[i] = calcularInventarioPromedio(i);
-            // imprimir(i);
             diasEspera--;
         }
     }
