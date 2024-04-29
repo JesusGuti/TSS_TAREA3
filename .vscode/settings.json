@@ -13,6 +13,17 @@
         "src/jfreechart-1.0.19/lib/orsoncharts-1.4-eval-nofx.jar",
         "src/jfreechart-1.0.19/lib/orsonpdf-1.6-eval.jar",
         "src/jfreechart-1.0.19/lib/servlet.jar",
-        "src/jfreechart-1.0.19/lib/swtgraphics2d.jar"
+        "src/jfreechart-1.0.19/lib/swtgraphics2d.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\hamcrest-core-1.3.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\jcommon-1.0.23.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\jfreechart-1.0.19.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\jfreechart-1.0.19-experimental.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\jfreechart-1.0.19-swt.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\jfreesvg-2.0.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\junit-4.11.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\orsoncharts-1.4-eval-nofx.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\orsonpdf-1.6-eval.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\servlet.jar",
+        "c:\\Users\\rickybk\\Desktop\\lib\\swtgraphics2d.jar"
     ]
 }
