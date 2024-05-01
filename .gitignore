@@ -3,3 +3,4 @@ src/jfreechart-1.0.19
 bin/jfreechart-1.0.19/*
 src/jfreechart-1.0.19/*
 *.class
+.vscode
