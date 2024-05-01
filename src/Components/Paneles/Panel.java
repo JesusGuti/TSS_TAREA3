@@ -1,4 +1,5 @@
 package Components.Paneles;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,6 +8,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.GraphicsEnvironment;
+import java.awt.FontFormatException;
 import Components.Listeners.CampoIteracionesListener;
 import Components.Ventanas.VentanaGrafica;
 import Components.Ventanas.VentanaTabla;
@@ -47,16 +53,29 @@ public class Panel extends JPanel {
     }
 
     private void definirParrafoIntroduccion() {
-        JLabel textoIntroductorio = new JLabel();
+        try {
+            // create the font to use. Specify the size!
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src\\Fonts\\Roboto-Regular.ttf")).deriveFont(18f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            // register the font
+            ge.registerFont(customFont);
+            JLabel textoIntroductorio = new JLabel();
         String texto = "Toda empresa tiene la preocupación de maximizar sus ganancias por lo que este es su\r\n" + //
-                        "objetivo principal. Para lograr esto, la empresa debe valorar, cuantificar y expresar de\r\n" + //
-                        "alguna manera aquellos factores que reporte el más alto beneficio posible.\r\n" + //
-                        "Este pequeño programa simula el comportamiento de una empresa donde ciertas variables son simuladas con distribuciones estadisticas.\r\n" + //
-                        "\r\n" + //
-                        "<b>Para continuar ingrese el numero de iteraciones que desea probar<b>";
+                "objetivo principal. Para lograr esto, la empresa debe valorar, cuantificar y expresar de\r\n" + //
+                "alguna manera aquellos factores que reporte el más alto beneficio posible.\r\n" + //
+                "Este pequeño programa simula el comportamiento de una empresa donde ciertas variables son simuladas con distribuciones estadisticas.<br>"
+                + //
+                "\r\n" + //
+                "<b>Para continuar ingrese el numero de iteraciones que desea probar<b>";
         textoIntroductorio.setText("<html> <p>" + texto + "</p></html>");
-        textoIntroductorio.setFont(new Font(Font.MONOSPACED,Font.PLAIN , 15));
+        textoIntroductorio.setFont(customFont);
         this.add(textoIntroductorio);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        }
+        
     }
 
     private void definirCampoIteraciones() {
@@ -82,7 +101,7 @@ public class Panel extends JPanel {
                     campoIteraciones.setText("");
                     hookeJeeves = null;
                 } catch (Error error) {
-                    
+
                 }
             }
         });
@@ -93,15 +112,16 @@ public class Panel extends JPanel {
                 try {
                     String textoIteraciones = campoIteraciones.getText();
                     int numeroIteraciones = Integer.parseInt(textoIteraciones);
-                    if(hookeJeeves == null) {
+                    if (hookeJeeves == null) {
                         hookeJeeves = new HookeJeeves(numeroIteraciones);
                     }
-                    Calculo  calculo = hookeJeeves.obtenerMejorCalculo();
+                    Calculo calculo = hookeJeeves.obtenerMejorCalculo();
                     String mensaje = obtenerMensajeValoresValidos();
-                    JOptionPane.showMessageDialog(null,mensaje , "Valores Optimos", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, mensaje, "Valores Optimos", JOptionPane.INFORMATION_MESSAGE);
                     tabla = new VentanaTabla(calculo);
                 } catch (NumberFormatException error) {
-                    JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -113,15 +133,16 @@ public class Panel extends JPanel {
                 try {
                     String textoIteraciones = campoIteraciones.getText();
                     int numeroIteraciones = Integer.parseInt(textoIteraciones);
-                    if(hookeJeeves == null) {
+                    if (hookeJeeves == null) {
                         hookeJeeves = new HookeJeeves(numeroIteraciones);
                     }
-                    Calculo  calculo = hookeJeeves.obtenerMejorCalculo();
+                    Calculo calculo = hookeJeeves.obtenerMejorCalculo();
                     String mensaje = obtenerMensajeValoresValidos();
-                    JOptionPane.showMessageDialog(null,mensaje , "Valores Optimos", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, mensaje, "Valores Optimos", JOptionPane.INFORMATION_MESSAGE);
                     grafica = new VentanaGrafica(calculo);
                 } catch (NumberFormatException error) {
-                    JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Debe insertar un número válido", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -134,19 +155,19 @@ public class Panel extends JPanel {
     }
 
     private void darEstiloABotones(JButton boton) {
-        boton.setForeground(new Color(255,255,255));
-        boton.setBackground(new Color(15,157,201));
+        boton.setForeground(new Color(255, 255, 255));
+        boton.setBackground(new Color(15, 157, 201));
     }
 
-    private void cerrarVentana(JFrame ventana){
-        if(ventana != null){
+    private void cerrarVentana(JFrame ventana) {
+        if (ventana != null) {
             ventana.dispose();
             ventana = null;
         }
     }
 
     private String obtenerMensajeValoresValidos() {
-        String mensaje = "Los valores optimos son: r" + hookeJeeves.obtenerR() + " y q:" + hookeJeeves.obtenerQ();
+        String mensaje = "Los valores optimos son, r: " + hookeJeeves.obtenerR() + " y q:" + hookeJeeves.obtenerQ();
         return mensaje;
     }
 }
