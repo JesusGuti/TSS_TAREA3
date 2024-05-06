@@ -48,8 +48,8 @@ public class PanelGrafica extends JPanel{
         dataset.addSeries(series);
         JFreeChart chart = ChartFactory.createXYLineChart(
             "Inventario VS Tiempo",
-            "Inventario",
             "Tiempo",
+            "Inventario",
             dataset,
             PlotOrientation.VERTICAL,
             true,

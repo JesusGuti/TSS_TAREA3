@@ -80,7 +80,7 @@ public class PanelSuperior extends JPanel {
     }
 
     private JLabel crearTitulo() {
-        JLabel titulo = new JLabel("Taller de Simulacion de Sistemas-Simulación de Inventario");
+        JLabel titulo = new JLabel("Simulación de Inventario");
         titulo.setForeground(new Color(255, 255, 255));
         titulo.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
         return titulo;

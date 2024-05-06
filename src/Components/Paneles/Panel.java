@@ -46,7 +46,7 @@ public class Panel extends JPanel {
     public void iniciarComponentes() {
         definirParrafoIntroduccion();
         definirCampoIteraciones();
-        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelBotones.setBackground(new Color(255, 255, 255));
         definirBotones(panelBotones);
         this.add(panelBotones);
@@ -60,13 +60,10 @@ public class Panel extends JPanel {
             // register the font
             ge.registerFont(customFont);
             JLabel textoIntroductorio = new JLabel();
-        String texto = "Toda empresa tiene la preocupación de maximizar sus ganancias por lo que este es su\r\n" + //
-                "objetivo principal. Para lograr esto, la empresa debe valorar, cuantificar y expresar de\r\n" + //
-                "alguna manera aquellos factores que reporte el más alto beneficio posible.\r\n" + //
-                "Este pequeño programa simula el comportamiento de una empresa donde ciertas variables son simuladas con distribuciones estadisticas.<br>"
+        String texto = "Este pequeño programa simula el comportamiento de una empresa donde ciertas variables son simuladas con distribuciones estadisticas.<br>"
                 + //
                 "\r\n" + //
-                "<b>Para continuar ingrese el numero de iteraciones que desea probar<b>";
+                "<b>Para continuar ingrese el numero de iteraciones que desea probar.<b>";
         textoIntroductorio.setText("<html> <p>" + texto + "</p></html>");
         textoIntroductorio.setFont(customFont);
         this.add(textoIntroductorio);
@@ -79,11 +76,12 @@ public class Panel extends JPanel {
     }
 
     private void definirCampoIteraciones() {
-        JPanel panelCampo = new JPanel(new BorderLayout()); // Panel para el campo de iteraciones
-        JLabel label = new JLabel("Definir el numero de iteraciones a probar");
+        JPanel panelCampo = new JPanel(new FlowLayout(FlowLayout.CENTER)); // Panel para el campo de iteraciones
+        JLabel label = new JLabel("Definir el numero de iteraciones a probar.");
         String placeholder = "Ingrese el numero de iteraciones a ejecutar";
         campoIteraciones = new JTextField(placeholder);
-        campoIteraciones.setMaximumSize(new Dimension(500, 20));
+        campoIteraciones.setPreferredSize(new Dimension(230, 25));
+        //campoIteraciones.setMaximumSize(new Dimension(500, 20));
         CampoIteracionesListener campoListener = new CampoIteracionesListener();
         campoIteraciones.addKeyListener(campoListener);
         campoIteraciones.addMouseListener(campoListener);
@@ -156,7 +154,7 @@ public class Panel extends JPanel {
 
     private void darEstiloABotones(JButton boton) {
         boton.setForeground(new Color(255, 255, 255));
-        boton.setBackground(new Color(15, 157, 201));
+        boton.setBackground(new Color(100, 100, 100));
     }
 
     private void cerrarVentana(JFrame ventana) {
@@ -167,7 +165,7 @@ public class Panel extends JPanel {
     }
 
     private String obtenerMensajeValoresValidos() {
-        String mensaje = "Los valores optimos son, r: " + hookeJeeves.obtenerR() + " y q:" + hookeJeeves.obtenerQ();
+        String mensaje = "Los valores optimos son, R: " + hookeJeeves.obtenerR() + " y q: " + hookeJeeves.obtenerQ();
         return mensaje;
     }
 }
